@@ -22,7 +22,7 @@ Route::get('/hello', function () {
         ->header('Content-Type', 'text/plain');
 });
 
-Route::get('/posts/{id}', function ($id){
+Route::get('/postsi/{id}', function ($id){
     return response($id > 10 ? 'Hello' : 'Not hello');
 });
 /*
@@ -35,4 +35,12 @@ Route::get('/user/{id}', function (\Illuminate\Http\Request $request, $id)
     return 'User ' . $id;
 });
 
-Route::view('/test', 'test');
+Route::get('/posts/{id}', function ($id)
+{
+    return response('Post ' . $id);
+})->where('id', '[0-9]');
+
+
+Route::get('/search', function (\Illuminate\Http\Request $request){
+    return $request->name . ' ' . $request->city;
+});
